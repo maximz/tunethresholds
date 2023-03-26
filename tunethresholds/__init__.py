@@ -7,7 +7,7 @@ from logging import NullHandler
 logging.getLogger(__name__).addHandler(NullHandler())
 
 
-from typing import List, Union, Optional
+from typing import Callable, List, Union, Optional
 
 import numpy as np
 from scipy import optimize
@@ -74,7 +74,7 @@ class AdjustedProbabilitiesDerivedModel(
         # Don't renormalize each row to sum to 1.
         return np.multiply(predict_probas, class_weights)
 
-    def predict_proba(self, X) -> np.ndarray:
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
         """
         Reweight predicted class probability vectors.
         """
@@ -84,8 +84,9 @@ class AdjustedProbabilitiesDerivedModel(
 
     @staticmethod
     def _choose_winning_label(
-        classes: Union[List[str], np.ndarray], adjusted_probabilities: np.ndarray
-    ) -> Union[str, np.ndarray]:
+        classes: Union[List[str], List[int], np.ndarray],
+        adjusted_probabilities: np.ndarray,
+    ) -> Union[str, int, np.ndarray]:
         # Argmax along last axis,
         # which is axis 1 for a 2D array and axis 0 for a 1D array.
 
@@ -96,16 +97,16 @@ class AdjustedProbabilitiesDerivedModel(
         # Defensive casting:
         return np.array(classes)[np.argmax(np.array(adjusted_probabilities), axis=-1)]
 
-    def predict(self, X) -> Union[str, np.ndarray]:
+    def predict(self, X: np.ndarray) -> Union[str, int, np.ndarray]:
         """Reweight predicted class probability vectors to choose predicted class label for each example."""
         return self._choose_winning_label(self.classes_, self.predict_proba(X))
 
     @staticmethod
     def _get_weights_to_optimize_decision_threshold(
         predicted_probabilities_validation: np.ndarray,
-        classes: Union[List[str], np.ndarray],
+        classes: Union[List[str], List[int], np.ndarray],
         y_validation_true: np.ndarray,
-        score_func=matthews_corrcoef,
+        score_func: Callable = matthews_corrcoef,
     ) -> np.ndarray:
         """
         Given predict_proba(X) and y_true, find class weights to maximize accuracy (or another score) of choosing predicted labels y_pred.
