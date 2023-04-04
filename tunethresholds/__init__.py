@@ -13,16 +13,14 @@ import numpy as np
 from scipy import optimize
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.metrics import matthews_corrcoef
-from wrapinstance import ClassInstanceWrapper
+from extendanything import ExtendAnything
 
 __author__ = """Maxim Zaslavsky"""
 __email__ = "maxim@maximz.com"
 __version__ = "0.0.1"
 
 
-class AdjustedProbabilitiesDerivedModel(
-    ClassInstanceWrapper, ClassifierMixin, BaseEstimator
-):
+class AdjustedProbabilitiesDerivedModel(ExtendAnything, ClassifierMixin, BaseEstimator):
     """Wrapper around any multiclass classification model to adjust decision thresholds that determine predicted labels.
     The output of predict() and predict_proba() are different:
     - predict_proba() probabilities are rescaled and may no longer sum to 1.
@@ -49,7 +47,7 @@ class AdjustedProbabilitiesDerivedModel(
 
     # TODO: Can we make AdjustedProbabilitiesDerivedModel be a generic type that accepts a type T and shadows all T’s type params?
 
-    # ClassInstanceWrapper means will pass through to base instance's attributes.
+    # ExtendAnything means will pass through to base instance's attributes.
     # Used to map e.g. classes_ -> inner_clf.classes_ and predict_proba -> inner_clf.predict_proba.
 
     # TODO: is there a type hint for all sklearn models?
