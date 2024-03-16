@@ -1,4 +1,4 @@
-# Tune Decision Thresholds (WIP)
+# Tune Decision Thresholds
 
 [![](https://img.shields.io/pypi/v/tunethresholds.svg)](https://pypi.python.org/pypi/tunethresholds)
 [![CI](https://github.com/maximz/tunethresholds/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/maximz/tunethresholds/actions/workflows/ci.yaml)
