@@ -1,19 +1,19 @@
-black==22.3.0
-bump2version==0.5.11
+bump2version>=1.0.1
 coverage>=7.2.2
 extendanything>=0.0.1
-flake8==3.7.8
-numpy>=1.22.0
+furo==2024.1.29
+multiclass-metrics>=0.0.1
+numpy==1.24.3
 pip>=19.2.3
 pre-commit>=2.15.0
 pytest-cov>=4.0.0
+pytest-lazy-fixture>=0.6.3
 pytest-runner>=5.1
-pytest>=7.0.0
+pytest>=7,<8 # <8 for compatibility with pytest-lazy-fixture
 recommonmark>=0.6.0
 requests>=2.28.0
-scikit-learn>=1.1.1
-scipy>=1.8.1
+ruff>=0.2.2
+scikit-learn == 1.2.2
+scipy==1.11.1
 sphinx>=6.0
-twine==1.14.0
-watchdog==0.9.0
 wheel>=0.33.6

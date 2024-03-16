@@ -10,7 +10,7 @@ with open("README.md") as readme_file:
 with open("CHANGELOG.md") as history_file:
     history = history_file.read()
 
-requirements = ["extendanything", "scikit-learn", "scipy", "numpy"]
+requirements = ["numpy", "scipy", "scikit-learn", "extendanything"]
 
 setup_requirements = [
     "pytest-runner",

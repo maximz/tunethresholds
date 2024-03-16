@@ -4,11 +4,10 @@ import numpy as np
 import pytest
 import sklearn.base
 
-# import pytest
 from numpy.testing import assert_array_equal
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import accuracy_score
-from malid.external.genetools_extras import roc_auc_score
+from multiclass_metrics import roc_auc_score
 
 from tunethresholds import (
     AdjustedProbabilitiesDerivedModel,
@@ -114,7 +113,7 @@ def test_adjust_decision_threshold(
     # unpack
     y_true, y_score, labels = data
 
-    n_classes = y_score.shape[1]
+    # n_classes = y_score.shape[1]
     X_test = np.random.randn(y_score.shape[0], 10)  # random
     model = FakeModel(y_score, labels)
     adjusted_model = AdjustedProbabilitiesDerivedModel.adjust_model_decision_thresholds(
@@ -166,9 +165,10 @@ def test_sklearn_clonable():
 
     # Check that attributes have transferred, except for inner_clf's attributes that have _ at the end, e.g. `classes_`
     # sklearn specifically does not clone those. but the rest, like `constant`, should transfer
-    assert_array_equal(
-        estimator_clone.class_weights, estimator.class_weights
-    ), "Derived class property failed to transfer"
+    (
+        assert_array_equal(estimator_clone.class_weights, estimator.class_weights),
+        "Derived class property failed to transfer",
+    )
     assert (
         estimator_clone.constant == estimator.constant == inner_clf.constant
     ), "Inner class property failed to transfer"
