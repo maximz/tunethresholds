@@ -3,7 +3,7 @@ coverage>=7.2.2
 extendanything>=0.0.1
 furo==2024.1.29
 multiclass-metrics>=0.0.1
-numpy==1.24.3
+numpy==1.26.4
 pip>=19.2.3
 pre-commit>=2.15.0
 pytest-cov>=4.0.0
