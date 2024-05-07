@@ -1,7 +1,7 @@
 bump2version>=1.0.1
 coverage>=7.2.2
 extendanything>=0.0.1
-furo==2024.1.29
+furo==2024.5.6
 multiclass-metrics>=0.0.1
 numpy==1.24.3
 pip>=19.2.3
