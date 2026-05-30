@@ -1,5 +1,10 @@
 # Tune Decision Thresholds
 
+[![](https://img.shields.io/pypi/v/tunethresholds.svg)](https://pypi.python.org/pypi/tunethresholds)
+[![CI](https://github.com/maximz/tunethresholds/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/maximz/tunethresholds/actions/workflows/ci.yaml)
+[![](https://img.shields.io/badge/docs-here-blue.svg)](https://tunethresholds.maximz.com)
+[![](https://img.shields.io/github/stars/maximz/tunethresholds?style=social)](https://github.com/maximz/tunethresholds)
+
 `tunethresholds` is a small scikit-learn-style utility for tuning multiclass
 classification decision thresholds after a model has already been trained. It
 wraps a classifier that exposes `predict_proba()` and `classes_`, learns one
